@@ -88,17 +88,6 @@ resource "azurerm_role_assignment" "aks_noe_backup_identity" {
   principal_id         = var.kubelet_identity_object_id
 }
 
-resource "azurerm_role_assignment" "backup_id_sa_backup_owner" {
-  for_each = toset([
-    azurerm_user_assigned_identity.backup_identity.principal_id,
-    var.storage_contributor_role_principal
-  ])
-
-  scope                = azurerm_storage_account.aks_backup.id
-  role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = each.key
-}
-
 # Workload Identity: Use velero's k8s service account - yes, the name is hardcoded here....
 resource "azurerm_federated_identity_credential" "backup_credential" {
   name                = "backup-${var.name_affix}"
@@ -111,9 +100,14 @@ resource "azurerm_federated_identity_credential" "backup_credential" {
 
 # Allow backup identity to access Backup Storage Account for Velero
 resource "azurerm_role_assignment" "backup_id_sa_data_contributor" {
+  for_each = toset([
+    azurerm_user_assigned_identity.backup_identity.principal_id,
+    var.storage_contributor_role_principal
+  ])
+
   scope                = azurerm_storage_account.aks_backup.id
   role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = azurerm_user_assigned_identity.backup_identity.principal_id
+  principal_id         = each.key
 }
 
 resource "azurerm_role_assignment" "backup_id_sa_contributor" {
