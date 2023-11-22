@@ -100,14 +100,17 @@ resource "azurerm_federated_identity_credential" "backup_credential" {
 
 # Allow backup identity to access Backup Storage Account for Velero
 resource "azurerm_role_assignment" "backup_id_sa_data_contributor" {
-  for_each = toset([
-    azurerm_user_assigned_identity.backup_identity.principal_id,
-    var.storage_contributor_role_principal
-  ])
-
   scope                = azurerm_storage_account.aks_backup.id
   role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = each.key
+  principal_id         = azurerm_user_assigned_identity.backup_identity.principal_id
+}
+
+# Additional identity with write access to blob
+resource "azurerm_role_assignment" "additional_sa_data_contributor" {
+  count                = var.additional_storage_contributor_role_principal == "" ? 0 : 1
+  scope                = azurerm_storage_account.aks_backup.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = var.additional_storage_contributor_role_principal
 }
 
 resource "azurerm_role_assignment" "backup_id_sa_contributor" {
