@@ -34,10 +34,6 @@ variable "virtual_network_subnet_ids" {
   type        = list(string)
   description = "List of IDs of the subnets that should be connected to the storage"
 }
-variable "network_ip_rules" {
-  type        = list(string)
-  description = "One or more IP Addresses, or CIDR Blocks to access the storage."
-}
 variable "create_private_endpoint" {
   type        = bool
   description = "Whether to set up a privte end"
@@ -64,9 +60,10 @@ variable "private_link_tenant_id" {
   type        = string
   description = "The tenant ID of the private link"
 }
-variable "storage_contributor_role_principal" {
+variable "additional_storage_contributor_role_principal" {
   type        = string
-  description = "Additional role to be stroage contributor"
+  description = "Additional role principle to be storage contributor"
+  default     = ""
 }
 variable "storage_account_name" {
   type        = string
