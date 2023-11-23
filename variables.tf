@@ -2,6 +2,11 @@ variable "node_resource_group" {
   type        = string
   description = "The name of the resource group the AKS nodes are running in"
 }
+
+variable "node_resource_group_id" {
+  type        = string
+  description = "The name of the resource group the AKS nodes are running in"
+}
 variable "tags" {
   type        = map(string)
   description = "The tags to be applied to all the resources"
@@ -21,6 +26,10 @@ variable "network_ip_access_list" {
 variable "main_rg_name" {
   type        = string
   description = "Name of the main RG for resources"
+}
+variable "main_rg_location" {
+  type = string
+  description = "Location of main backup RG"
 }
 variable "oidc_issuer_url" {
   type        = string

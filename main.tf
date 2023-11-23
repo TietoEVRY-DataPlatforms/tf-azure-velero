@@ -1,17 +1,7 @@
-# the RG of the node pool
-data "azurerm_resource_group" "nodepool_rg" {
-  name = var.node_resource_group
-}
-
-# oprimary RG
-data "azurerm_resource_group" "main" {
-  name = var.main_rg_name
-}
-
 # new RG for the backup
 resource "azurerm_resource_group" "aks_backup" {
   name     = var.backup_resource_group_name
-  location = data.azurerm_resource_group.main.location
+  location = var.main_rg_location
 
   tags = var.tags
 }
@@ -131,7 +121,7 @@ resource "azurerm_role_assignment" "backup_velero" {
 }
 
 resource "azurerm_role_assignment" "backup_velero_nodes_rg" {
-  scope              = data.azurerm_resource_group.nodepool_rg.id
+  scope              = var.node_resource_group_id
   role_definition_id = azurerm_role_definition.velero.role_definition_resource_id
   principal_id       = azurerm_user_assigned_identity.backup_identity.principal_id
 }
@@ -169,7 +159,7 @@ resource "azurerm_role_definition" "velero" {
 
   assignable_scopes = [
     "/subscriptions/${var.subscription_id}",
-    "/subscriptions/${var.subscription_id}/resourceGroups/${data.azurerm_resource_group.nodepool_rg.name}",
+    "/subscriptions/${var.subscription_id}/resourceGroups/${var.node_resource_group}",
     "/subscriptions/${var.subscription_id}/resourceGroups/${azurerm_resource_group.aks_backup.name}/providers/Microsoft.Storage/storageAccounts/${azurerm_storage_account.aks_backup.name}"
   ]
 
