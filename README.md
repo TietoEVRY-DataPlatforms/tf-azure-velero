@@ -37,8 +37,6 @@ No modules.
 | [azurerm_storage_account.aks_backup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) | resource |
 | [azurerm_storage_container.velero](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) | resource |
 | [azurerm_user_assigned_identity.backup_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) | resource |
-| [azurerm_resource_group.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
-| [azurerm_resource_group.nodepool_rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 
@@ -49,10 +47,12 @@ No modules.
 | <a name="input_backup_resource_group_name"></a> [backup\_resource\_group\_name](#input\_backup\_resource\_group\_name) | Name of the RG for the backup | `string` | n/a | yes |
 | <a name="input_create_private_endpoint"></a> [create\_private\_endpoint](#input\_create\_private\_endpoint) | Whether to set up a privte end | `bool` | `true` | no |
 | <a name="input_kubelet_identity_object_id"></a> [kubelet\_identity\_object\_id](#input\_kubelet\_identity\_object\_id) | Object ID of the cluster's kubelet identity | `string` | n/a | yes |
+| <a name="input_main_rg_location"></a> [main\_rg\_location](#input\_main\_rg\_location) | Location of main backup RG | `string` | n/a | yes |
 | <a name="input_main_rg_name"></a> [main\_rg\_name](#input\_main\_rg\_name) | Name of the main RG for resources | `string` | n/a | yes |
 | <a name="input_name_affix"></a> [name\_affix](#input\_name\_affix) | The name to affix to resources for uniqueness | `string` | n/a | yes |
 | <a name="input_network_ip_access_list"></a> [network\_ip\_access\_list](#input\_network\_ip\_access\_list) | The list of IP addresses to allow direct access to the storage | `list(string)` | n/a | yes |
 | <a name="input_node_resource_group"></a> [node\_resource\_group](#input\_node\_resource\_group) | The name of the resource group the AKS nodes are running in | `string` | n/a | yes |
+| <a name="input_node_resource_group_id"></a> [node\_resource\_group\_id](#input\_node\_resource\_group\_id) | The name of the resource group the AKS nodes are running in | `string` | n/a | yes |
 | <a name="input_oidc_issuer_url"></a> [oidc\_issuer\_url](#input\_oidc\_issuer\_url) | The URL of the AKS cluster's OIDC issuer | `string` | n/a | yes |
 | <a name="input_private_endpoint_dns_zone_ids"></a> [private\_endpoint\_dns\_zone\_ids](#input\_private\_endpoint\_dns\_zone\_ids) | List of IDs | `list(string)` | n/a | yes |
 | <a name="input_private_endpoint_dns_zone_name"></a> [private\_endpoint\_dns\_zone\_name](#input\_private\_endpoint\_dns\_zone\_name) | Name of the private DNS zone | `string` | `"int-zone"` | no |
