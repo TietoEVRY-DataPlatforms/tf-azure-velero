@@ -66,5 +66,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_velero_client_id"></a> [velero\_client\_id](#output\_velero\_client\_id) | n/a |
 <!-- END_TF_DOCS -->
