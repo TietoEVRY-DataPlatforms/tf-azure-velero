@@ -68,5 +68,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_velero_client_id"></a> [velero\_client\_id](#output\_velero\_client\_id) | n/a |
+| <a name="output_azure_backup"></a> [azure\_backup](#output\_azure\_backup) | Values to be included in the metadata.json |
 <!-- END_TF_DOCS -->
