@@ -32,6 +32,7 @@ resource "azurerm_storage_account" "aks_backup" {
   name                = var.storage_account_name
   resource_group_name = azurerm_resource_group.aks_backup.name
   location            = azurerm_resource_group.aks_backup.location
+  min_tls_version     = "TLS1_2"
 
   account_tier             = "Standard"
   access_tier              = "Hot"
