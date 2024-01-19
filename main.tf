@@ -53,6 +53,9 @@ resource "azurerm_storage_account" "aks_backup" {
     }
 
     virtual_network_subnet_ids = var.virtual_network_subnet_ids
+
+    # Allow Trusted Microsoft Services to bypass rules (Trivy AVD-AZU-0010)
+    bypass = ["Metrics", "AzureServices"]
   }
 
   tags = merge(var.tags, {})
