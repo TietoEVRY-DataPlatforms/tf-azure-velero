@@ -28,7 +28,7 @@ variable "main_rg_name" {
   description = "Name of the main RG for resources"
 }
 variable "main_rg_location" {
-  type = string
+  type        = string
   description = "Location of main backup RG"
 }
 variable "oidc_issuer_url" {
@@ -77,6 +77,10 @@ variable "additional_storage_contributor_role_principal" {
 variable "storage_account_name" {
   type        = string
   description = "The name of the storage account to create"
+}
+variable "cross_tenant_replication_enabled" {
+  description = "Should cross Tenant replication be enabled?"
+  default     = false
 }
 variable "backup_resource_group_name" {
   type        = string
