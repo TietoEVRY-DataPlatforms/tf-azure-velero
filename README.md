@@ -7,13 +7,13 @@ Terraform Module to manage velero resources for DataPlatforms' AKS clusters.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.39.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.39.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.0.0 |
 
 ## Modules
 
@@ -46,6 +46,7 @@ No modules.
 | <a name="input_backup_identity_name"></a> [backup\_identity\_name](#input\_backup\_identity\_name) | Name of the identity for backup | `string` | n/a | yes |
 | <a name="input_backup_resource_group_name"></a> [backup\_resource\_group\_name](#input\_backup\_resource\_group\_name) | Name of the RG for the backup | `string` | n/a | yes |
 | <a name="input_create_private_endpoint"></a> [create\_private\_endpoint](#input\_create\_private\_endpoint) | Whether to set up a privte end | `bool` | `true` | no |
+| <a name="input_cross_tenant_replication_enabled"></a> [cross\_tenant\_replication\_enabled](#input\_cross\_tenant\_replication\_enabled) | Should cross Tenant replication be enabled? | `bool` | `false` | no |
 | <a name="input_kubelet_identity_object_id"></a> [kubelet\_identity\_object\_id](#input\_kubelet\_identity\_object\_id) | Object ID of the cluster's kubelet identity | `string` | n/a | yes |
 | <a name="input_main_rg_location"></a> [main\_rg\_location](#input\_main\_rg\_location) | Location of main backup RG | `string` | n/a | yes |
 | <a name="input_main_rg_name"></a> [main\_rg\_name](#input\_main\_rg\_name) | Name of the main RG for resources | `string` | n/a | yes |
